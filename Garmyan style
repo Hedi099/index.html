@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ckb" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garmyan Style - دەلاکی</title>
+    <!-- Tailwind CSS بۆ دیزاینێکی مۆدێرن -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;800&display=swap');
+        body { font-family: 'Vazirmatn', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+
+    <!-- هێدەر و ناونیشان -->
+    <header class="bg-gray-800 border-b border-gray-700 p-6 text-center shadow-lg relative">
+        <h1 class="text-3xl font-extrabold text-amber-500 tracking-wide">Garmyan Style</h1>
+        <p class="text-gray-400 text-sm mt-2">کاتی دەوام: ٤ی عەسڕ بۆ ١٢ی شەو</p>
+        <p class="text-xs text-gray-500 mt-1">📍 ناونیشان: قەزای ڕزگاری - بەرامبەر قوتابخانەی کۆمار</p>
+        
+        <!-- دوگمەی ئەدمین -->
+        <button onclick="openAdminModal()" class="absolute top-6 left-6 bg-gray-700 hover:bg-gray-600 text-xs px-3 py-1.5 rounded-lg border border-gray-600 transition">
+            چوونەژووری ئەدمین
+        </button>
+    </header>
+
+    <main class="max-w-4xl mx-auto p-4 mt-6">
+        <!-- بەشی گرتنی کات -->
+        <section class="bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-700 mb-8">
+            <h2 class="text-xl font-bold mb-4 text-amber-400 border-r-4 border-amber-500 pr-2">ناو تۆمارکردن</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">ناوی تەواو:</label>
+                    <input type="text" id="customerName" placeholder="ناوەکەت بنووسە..." class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-white focus:outline-none focus:border-amber-500">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">ژمارەی مۆبایل:</label>
+                    <input type="tel" id="customerPhone" placeholder="0750XXXXXXX" class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-white text-left focus:outline-none focus:border-amber-500" dir="ltr">
+                </div>
+            </div>
+        </section>
+
+        <!-- لیستی کاتەکان -->
+        <section>
+            <h2 class="text-xl font-bold mb-4 text-amber-400 border-r-4 border-amber-500 pr-2">کاتەکانی ئەمرۆ</h2>
+            <div id="slotsContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                <!-- کاتەکان بە هێزی جافاسکڕێپت لێرە دروست دەبن -->
+            </div>
+        </section>
+    </main>
+
+    <!-- مۆداڵی ئەدمین (پۆپ ئەپ) -->
+    <div id="adminModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-4 z-50">
+        <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 w-full max-w-md shadow-2xl animate-fade-in">
+            <h3 class="text-lg font-bold text-amber-500 mb-4">داخڵکردنی کۆدی ئەدمین</h3>
+            <input type="password" id="adminCode" placeholder="کۆدەکە بنووسە..." class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-center text-white tracking-widest mb-4 focus:outline-none focus:border-amber-500">
+            <div class="flex gap-2">
+                <button onclick="verifyAdmin()" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold p-3 rounded-xl transition">چوونەژوورەوە</button>
+                <button onclick="closeAdminModal()" class="w-1/3 bg-gray-700 hover:bg-gray-600 p-3 rounded-xl transition">پاشگەزبوونەوە</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- مۆداڵی بەڕێوەبردنی کاتەکان بۆ ئەدمین -->
+    <div id="dashboardModal" class="fixed inset-0 bg-black/90 hidden overflow-y-auto p-4 z-50">
+        <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 w-full max-w-2xl mx-auto mt-10 shadow-2xl">
+            <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-3">
+                <h3 class="text-xl font-bold text-amber-500">کۆنتڕۆڵی ئەپۆینتمێنتەکان</h3>
+                <button onclick="closeDashboard()" class="text-gray-400 hover:text-white bg-gray-700 px-3 py-1 rounded-lg">داخستن</button>
+            </div>
+            <div id="adminList" class="space-y-3">
+                <!-- لیستی ناوەکان بۆ سڕینەوە لێرە پیشان دەدرێت -->
+            </div>
+        </div>
+    </div>
+
+    <!-- جافاسکڕێپت بۆ ڕێکخستنی لۆجیکەکە -->
+    <script>
+        // دروستکردنی کاتەکان لە ٤ی عەسڕ بۆ ١٢ی شەو (هەر کاتژمێرێک نۆرەیەک)
+        const workingHours = [
+            "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", 
+            "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"
+        ];
+
+        // بارکردنی داتا لە داتابەیس/لۆکاڵ ستۆریج
+        let appointments = JSON.parse(localStorage.getItem('garmyan_style_slots')) || {};
+
+        function initSlots() {
+            const container = document.getElementById('slotsContainer');
+            container.innerHTML = '';
+
+            workingHours.forEach(time => {
+                const isBooked = appointments[time];
+                const btn = document.createElement('button');
+                
+                btn.className = `p-4 rounded-xl text-center border transition flex flex-col items-center justify-center gap-1 ${
+                    isBooked 
+                    ? 'bg-red-950/40 border-red-800 text-red-400 cursor-not-allowed' 
+                    : 'bg-gray-950 hover:border-amber-500 border-gray-800 text-gray-200 shadow-md'
+                }`;
+                
+                btn.disabled = isBooked ? true : false;
+                btn.onclick = () => bookSlot(time);
+
+                btn.innerHTML = `
+                    <span class="font-bold text-sm">${time}</span>
+                    <span class="text-xs ${isBooked ? 'text-red-500' : 'text-emerald-500'}">
+                        ${isBooked ? 'گیراوە' : 'مایە'}
+                    </span>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        // گرتنی کات
+        function bookSlot(time) {
+            const name = document.getElementById('customerName').value.trim();
+            const phone = document.getElementById('customerPhone').value.trim();
+
+            if (!name || !phone) {
+                alert('تکایە ناو و ژمارەی مۆبایلەکەت بنووسە پێش هەڵبژاردنی کات.');
+                return;
+            }
+
+            appointments[time] = { name, phone };
+            localStorage.setItem('garmyan_style_slots', JSON.stringify(appointments));
+            
+            // پاککردنەوەی ئینپوتەکان
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            
+            alert(`کاتەکەت بە سەرکەوتوویی تۆمارکرا لە کاتژمێر: ${time}`);
+            initSlots();
+        }
+
+        // بەشی ئەدمین
+        function openAdminModal() { document.getElementById('adminModal').classList.replace('hidden', 'flex'); }
+        function closeAdminModal() { document.getElementById('adminModal').classList.replace('flex', 'hidden'); }
+
+        function verifyAdmin() {
+            const code = document.getElementById('adminCode').value;
+            if (code === '0202') {
+                closeAdminModal();
+                document.getElementById('adminCode').value = '';
+                openDashboard();
+            } else {
+                alert('کۆدەکە هەڵەیە!');
+            }
+        }
+
+        function openDashboard() {
+            document.getElementById('dashboardModal').classList.remove('hidden');
+            const list = document.getElementById('adminList');
+            list.innerHTML = '';
+
+            let hasData = false;
+            workingHours.forEach(time => {
+                if (appointments[time]) {
+                    hasData = true;
+                    const div = document.createElement('div');
+                    div.className = "flex justify-between items-center bg-gray-950 p-4 rounded-xl border border-gray-800";
+                    div.innerHTML = `
+                        <div>
+                            <p class="text-amber-500 font-bold text-sm">${time}</p>
+                            <p class="font-medium">${appointments[time].name}</p>
+                            <p class="text-xs text-gray-400" dir="ltr">${appointments[time].phone}</p>
+                        </div>
+                        <button onclick="cancelSlot('${time}')" class="bg-red-600/20 hover:bg-red-600 border border-red-700 hover:text-white text-red-400 text-xs px-3 py-1.5 rounded-lg transition">
+                            سڕینەوە
+                        </button>
+                    `;
+                    list.appendChild(div);
+                }
+            });
+
+            if (!hasData) {
+                list.innerHTML = `<p class="text-gray-500 text-center py-4">هیچ کاتێک تۆمار نەکراوە بۆ ئەمڕۆ.</p>`;
+            }
+        }
+
+        function cancelSlot(time) {
+            if (confirm(`دڵنیای لە سڕینەوەی کاتی کاتژمێر ${time}?`)) {
+                delete appointments[time];
+                localStorage.setItem('garmyan_style_slots', JSON.stringify(appointments));
+                openDashboard();
+                initSlots();
+            }
+        }
+
+        function closeDashboard() { document.getElementById('dashboardModal').classList.add('hidden'); }
+
+        // دەستپێکردنی سایتەکە
+        initSlots();
+    </script>
+</body>
+</html> 
