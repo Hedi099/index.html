@@ -3,88 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garmyan Style - دەلاکی</title>
-    <!-- Tailwind CSS بۆ دیزاینێکی مۆدێرن -->
+    <title>Garmyan Style - Premium Barber</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;800&display=swap');
-        body { font-family: 'Vazirmatn', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap');
+        body { 
+            font-family: 'Vazirmatn', sans-serif; 
+            background-color: #0a0b0d;
+        }
+        /* پاشبنەمای وێنەی ڕاستەقینە هاوشێوەی وێنەکە */
+        .barber-bg {
+            background-image: linear-gradient(to bottom, rgba(10, 11, 13, 0.8), rgba(10, 11, 13, 0.95)), 
+                              url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+        .gold-text { color: #d4af37; }
+        .gold-border { border-color: #d4af37; }
+        .gold-bg { background-color: #d4af37; }
     </style>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen">
+<body class="text-gray-300 min-h-screen barber-bg flex flex-col justify-between">
 
-    <!-- هێدەر و ناونیشان -->
-    <header class="bg-gray-800 border-b border-gray-700 p-6 text-center shadow-lg relative">
-        <h1 class="text-3xl font-extrabold text-amber-500 tracking-wide">Garmyan Style</h1>
-        <p class="text-gray-400 text-sm mt-2">کاتی دەوام: ٤ی عەسڕ بۆ ١٢ی شەو</p>
-        <p class="text-xs text-gray-500 mt-1">📍 ناونیشان: قەزای ڕزگاری - بەرامبەر قوتابخانەی کۆمار</p>
-        
-        <!-- دوگمەی ئەدمین -->
-        <button onclick="openAdminModal()" class="absolute top-6 left-6 bg-gray-700 hover:bg-gray-600 text-xs px-3 py-1.5 rounded-lg border border-gray-600 transition">
-            چوونەژووری ئەدمین
+    <!-- هێدەر و ڕێکخستنی ئەدمین -->
+    <header class="border-b border-gray-800/60 backdrop-blur-md bg-black/40 p-6 flex justify-between items-center max-w-7xl w-full mx-auto">
+        <div class="flex items-center gap-4">
+            <h1 class="text-2xl font-black tracking-wider gold-text uppercase border-l-2 border-[#d4af37] pl-3">GARMYAN STYLE</h1>
+            <div class="hidden md:flex flex-col text-[11px] text-gray-400">
+                <span>📍 قەزای ڕزگاری - بەرامبەر قوتابخانەی کۆمار</span>
+                <span>🕒 کاتی کارکردن: ٤ی عەسڕ بۆ ١٢ی شەو</span>
+            </div>
+        </div>
+        <button onclick="openAdminModal()" class="text-xs border border-[#d4af37]/40 hover:border-[#d4af37] text-[#d4af37] px-4 py-2 rounded transition-all">
+            بەڕێوەبردن
         </button>
     </header>
 
-    <main class="max-w-4xl mx-auto p-4 mt-6">
-        <!-- بەشی گرتنی کات -->
-        <section class="bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-700 mb-8">
-            <h2 class="text-xl font-bold mb-4 text-amber-400 border-r-4 border-amber-500 pr-2">ناو تۆمارکردن</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                    <label class="block text-sm text-gray-400 mb-1">ناوی تەواو:</label>
-                    <input type="text" id="customerName" placeholder="ناوەکەت بنووسە..." class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-white focus:outline-none focus:border-amber-500">
-                </div>
-                <div>
-                    <label class="block text-sm text-gray-400 mb-1">ژمارەی مۆبایل:</label>
-                    <input type="tel" id="customerPhone" placeholder="0750XXXXXXX" class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-white text-left focus:outline-none focus:border-amber-500" dir="ltr">
-                </div>
-            </div>
+    <!-- ناوەڕۆکی سەرەکی: دابەشکردنی لای چەپ و ڕاست وەک وێنەکە -->
+    <main class="max-w-7xl w-full mx-auto px-4 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center flex-grow">
+        
+        <!-- لای چەپ: تێکستە گەورە کلاسیکەکە -->
+        <section class="lg:col-span-5 space-y-6">
+            <span class="text-xs font-bold tracking-widest text-[#d4af37] uppercase">PREMIUM GROOMING EXPERIENCE</span>
+            <h2 class="text-4xl sm:text-6xl font-black text-white leading-none tracking-tight">
+                GARMYAN STYLE.<br>
+                <span class="text-gray-500 font-light">CLASSIC CUTS.</span><br>
+                MODERN STYLE.
+            </h2>
+            <p class="text-gray-400 text-xs sm:text-sm font-light leading-relaxed max-w-md">
+                شێوازێکی نوێ لە خزمەتگوزاری تاشینی قژ و ڕیش لە ناوچەکە. چیتر پێویست ناکات لە سەرەدا بوەستیت؛ کاتی خۆت بپارێزە و تەنها بە یەک کلیک نۆرەکەت مسۆگەر بکە.
+            </p>
         </section>
 
-        <!-- لیستی کاتەکان -->
-        <section>
-            <h2 class="text-xl font-bold mb-4 text-amber-400 border-r-4 border-amber-500 pr-2">کاتەکانی ئەمرۆ</h2>
-            <div id="slotsContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                <!-- کاتەکان بە هێزی جافاسکڕێپت لێرە دروست دەبن -->
+        <!-- لای ڕاست: کاتەکان و فۆرمی سپی وەک وێنەکە -->
+        <section class="lg:col-span-7 bg-white text-gray-900 rounded-xl shadow-2xl p-6 sm:p-8 border border-gray-100 max-w-2xl w-full mx-auto">
+            
+            <!-- فۆرم -->
+            <div class="border-b border-gray-100 pb-6 mb-6">
+                <h3 class="text-center text-xl font-bold tracking-tight text-gray-900 mb-6">دیاریگردنی کاتی سەرکەوتن</h3>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1.5">ناوی تەواو</label>
+                        <input type="text" id="customerName" placeholder="ناوەکەت بنووسە..." class="w-full bg-gray-50 border border-gray-200 rounded p-3 text-sm focus:outline-none focus:border-[#d4af37]">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-400 mb-1.5">ژمارەی مۆبایل</label>
+                        <input type="tel" id="customerPhone" placeholder="0750XXXXXXX" class="w-full bg-gray-50 border border-gray-200 rounded p-3 text-sm text-left focus:outline-none focus:border-[#d4af37]" dir="ltr">
+                    </div>
+                </div>
             </div>
+
+            <!-- خشتەی کاتەکان -->
+            <div>
+                <h4 class="text-xs font-bold text-gray-400 tracking-wider text-center mb-4 uppercase">AVAILABLE APPOINTMENTS</h4>
+                <div id="slotsContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <!-- کاتەکان لێرە دروست دەبن -->
+                </div>
+            </div>
+            
+            <p class="text-center text-[10px] text-amber-600 mt-4 font-light">* تێبینی: بەهۆی لۆدەوە، هەر کەسێک لە ڕۆژێکدا تەنها یەک نۆرەی بۆ هەیە.</p>
         </section>
     </main>
 
-    <!-- مۆداڵی ئەدمین (پۆپ ئەپ) -->
-    <div id="adminModal" class="fixed inset-0 bg-black/80 hidden items-center justify-center p-4 z-50">
-        <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 w-full max-w-md shadow-2xl animate-fade-in">
-            <h3 class="text-lg font-bold text-amber-500 mb-4">داخڵکردنی کۆدی ئەدمین</h3>
-            <input type="password" id="adminCode" placeholder="کۆدەکە بنووسە..." class="w-full bg-gray-950 border border-gray-700 rounded-xl p-3 text-center text-white tracking-widest mb-4 focus:outline-none focus:border-amber-500">
+    <!-- پۆپ ئەپی ئەدمین -->
+    <div id="adminModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4 z-50">
+        <div class="bg-[#111215] border border-gray-800 rounded p-6 w-full max-w-sm shadow-2xl">
+            <h3 class="text-xs font-bold text-[#d4af37] tracking-wider mb-2 uppercase">کۆدی ئەدمین</h3>
+            <input type="password" id="adminCode" placeholder="••••" class="w-full bg-gray-950 border border-gray-800 rounded p-3 text-center text-white text-xl tracking-widest mb-4 focus:outline-none focus:border-[#d4af37]">
             <div class="flex gap-2">
-                <button onclick="verifyAdmin()" class="w-full bg-amber-500 hover:bg-amber-600 text-gray-950 font-bold p-3 rounded-xl transition">چوونەژوورەوە</button>
-                <button onclick="closeAdminModal()" class="w-1/3 bg-gray-700 hover:bg-gray-600 p-3 rounded-xl transition">پاشگەزبوونەوە</button>
+                <button onclick="verifyAdmin()" class="w-full bg-[#d4af37] text-gray-950 font-bold p-2.5 rounded text-xs transition hover:bg-[#b59228]">چوونەژوورەوە</button>
+                <button onclick="closeAdminModal()" class="w-1/2 bg-gray-900 text-gray-400 p-2.5 rounded text-xs transition hover:bg-gray-800">داخستن</button>
             </div>
         </div>
     </div>
 
-    <!-- مۆداڵی بەڕێوەبردنی کاتەکان بۆ ئەدمین -->
-    <div id="dashboardModal" class="fixed inset-0 bg-black/90 hidden overflow-y-auto p-4 z-50">
-        <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6 w-full max-w-2xl mx-auto mt-10 shadow-2xl">
-            <div class="flex justify-between items-center mb-6 border-b border-gray-700 pb-3">
-                <h3 class="text-xl font-bold text-amber-500">کۆنتڕۆڵی ئەپۆینتمێنتەکان</h3>
-                <button onclick="closeDashboard()" class="text-gray-400 hover:text-white bg-gray-700 px-3 py-1 rounded-lg">داخستن</button>
+    <!-- داشبۆردی ئەدمین -->
+    <div id="dashboardModal" class="fixed inset-0 bg-black/80 backdrop-blur-md hidden overflow-y-auto p-4 z-50">
+        <div class="bg-[#111215] border border-gray-800 rounded max-w-2xl mx-auto mt-12 p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-6 border-b border-gray-800 pb-3">
+                <h3 class="text-sm font-bold text-[#d4af37]">لیستی نۆرە گراوەکان</h3>
+                <button onclick="closeDashboard()" class="text-xs text-gray-400 hover:text-white bg-gray-800 px-3 py-1.5 rounded">داخستن</button>
             </div>
-            <div id="adminList" class="space-y-3">
-                <!-- لیستی ناوەکان بۆ سڕینەوە لێرە پیشان دەدرێت -->
+            <div id="adminList" class="space-y-2">
+                <!-- داتا -->
             </div>
         </div>
     </div>
 
-    <!-- جافاسکڕێپت بۆ ڕێکخستنی لۆجیکەکە -->
+    <!-- فووتەر -->
+    <footer class="bg-black/60 border-t border-gray-900/60 py-4 text-center text-[10px] text-gray-600">
+        <p>© 2026 GARMYAN STYLE. Classic Grooming Website.</p>
+    </footer>
+
     <script>
-        // دروستکردنی کاتەکان لە ٤ی عەسڕ بۆ ١٢ی شەو (هەر کاتژمێرێک نۆرەیەک)
         const workingHours = [
             "04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM", 
             "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"
         ];
 
-        // بارکردنی داتا لە داتابەیس/لۆکاڵ ستۆریج
         let appointments = JSON.parse(localStorage.getItem('garmyan_style_slots')) || {};
 
         function initSlots() {
@@ -95,47 +133,54 @@
                 const isBooked = appointments[time];
                 const btn = document.createElement('button');
                 
-                btn.className = `p-4 rounded-xl text-center border transition flex flex-col items-center justify-center gap-1 ${
+                btn.className = `p-3 rounded text-center border text-xs transition-all ${
                     isBooked 
-                    ? 'bg-red-950/40 border-red-800 text-red-400 cursor-not-allowed' 
-                    : 'bg-gray-950 hover:border-amber-500 border-gray-800 text-gray-200 shadow-md'
+                    ? 'bg-red-50 border-red-200 text-red-400 line-through cursor-not-allowed' 
+                    : 'bg-white hover:bg-gray-50 border-gray-200 text-gray-800 font-bold shadow-sm hover:border-[#d4af37]'
                 }`;
                 
                 btn.disabled = isBooked ? true : false;
                 btn.onclick = () => bookSlot(time);
 
                 btn.innerHTML = `
-                    <span class="font-bold text-sm">${time}</span>
-                    <span class="text-xs ${isBooked ? 'text-red-500' : 'text-emerald-500'}">
+                    <div>${time}</div>
+                    <div class="text-[9px] mt-1 font-normal uppercase ${isBooked ? 'text-red-400' : 'text-emerald-600'}">
                         ${isBooked ? 'گیراوە' : 'مایە'}
-                    </span>
+                    </div>
                 `;
                 container.appendChild(btn);
             });
         }
 
-        // گرتنی کات
         function bookSlot(time) {
             const name = document.getElementById('customerName').value.trim();
             const phone = document.getElementById('customerPhone').value.trim();
 
             if (!name || !phone) {
-                alert('تکایە ناو و ژمارەی مۆبایلەکەت بنووسە پێش هەڵبژاردنی کات.');
+                alert('تکایە ناو و ژمارەی مۆبایلەکەت بنووسە.');
+                return;
+            }
+
+            // مەرج: ڕێگریکردن لە دووبارە نۆرەگرتنی هەمان کەس لە ڕۆژێکدا
+            const hasBookedBefore = Object.values(appointments).some(app => app.phone === phone);
+            const localCheck = localStorage.getItem('garmyan_user_has_booked');
+
+            if (hasBookedBefore || localCheck) {
+                alert('ببوورە، تۆ ناتوانیت لە یەک ڕۆژدا زیاتر لە یەک نۆرە تۆمار بکەیت!');
                 return;
             }
 
             appointments[time] = { name, phone };
             localStorage.setItem('garmyan_style_slots', JSON.stringify(appointments));
+            localStorage.setItem('garmyan_user_has_booked', 'true'); // مۆری سەر مۆبایلەکە
             
-            // پاککردنەوەی ئینپوتەکان
             document.getElementById('customerName').value = '';
             document.getElementById('customerPhone').value = '';
             
-            alert(`کاتەکەت بە سەرکەوتوویی تۆمارکرا لە کاتژمێر: ${time}`);
+            alert(`کاتەکەت بە سەرکەوتوویی تۆمارکرا بۆ کاتژمێر: ${time}`);
             initSlots();
         }
 
-        // بەشی ئەدمین
         function openAdminModal() { document.getElementById('adminModal').classList.replace('hidden', 'flex'); }
         function closeAdminModal() { document.getElementById('adminModal').classList.replace('flex', 'hidden'); }
 
@@ -160,14 +205,14 @@
                 if (appointments[time]) {
                     hasData = true;
                     const div = document.createElement('div');
-                    div.className = "flex justify-between items-center bg-gray-950 p-4 rounded-xl border border-gray-800";
+                    div.className = "flex justify-between items-center bg-gray-950 p-4 rounded border border-gray-900";
                     div.innerHTML = `
                         <div>
-                            <p class="text-amber-500 font-bold text-sm">${time}</p>
-                            <p class="font-medium">${appointments[time].name}</p>
-                            <p class="text-xs text-gray-400" dir="ltr">${appointments[time].phone}</p>
+                            <p class="text-[#d4af37] font-bold text-xs">${time}</p>
+                            <p class="text-sm text-white font-medium mt-0.5">${appointments[time].name}</p>
+                            <p class="text-xs text-gray-500 mt-0.5" dir="ltr">${appointments[time].phone}</p>
                         </div>
-                        <button onclick="cancelSlot('${time}')" class="bg-red-600/20 hover:bg-red-600 border border-red-700 hover:text-white text-red-400 text-xs px-3 py-1.5 rounded-lg transition">
+                        <button onclick="cancelSlot('${time}')" class="bg-red-950/20 hover:bg-red-600 border border-red-900/60 text-red-400 hover:text-white text-xs px-3 py-1.5 rounded transition">
                             سڕینەوە
                         </button>
                     `;
@@ -176,14 +221,15 @@
             });
 
             if (!hasData) {
-                list.innerHTML = `<p class="text-gray-500 text-center py-4">هیچ کاتێک تۆمار نەکراوە بۆ ئەمڕۆ.</p>`;
+                list.innerHTML = `<p class="text-gray-500 text-center py-4 text-xs">هیچ نۆرەیەک نییە.</p>`;
             }
         }
 
         function cancelSlot(time) {
-            if (confirm(`دڵنیای لە سڕینەوەی کاتی کاتژمێر ${time}?`)) {
+            if (confirm(`دڵنیای لە سڕینەوەی کاتی ${time}?`)) {
                 delete appointments[time];
                 localStorage.setItem('garmyan_style_slots', JSON.stringify(appointments));
+                localStorage.removeItem('garmyan_user_has_booked'); // سڕینەوەی مۆرەکە بۆ ئەوەی دووبارە بتوانێت بگرێتەوە
                 openDashboard();
                 initSlots();
             }
@@ -191,8 +237,7 @@
 
         function closeDashboard() { document.getElementById('dashboardModal').classList.add('hidden'); }
 
-        // دەستپێکردنی سایتەکە
         initSlots();
     </script>
 </body>
-</html> 
+</html>
